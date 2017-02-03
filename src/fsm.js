@@ -65,7 +65,24 @@ class FSM {
      * @param event
      * @returns {Array}
      */
-    getStates(event) {}
+    getStates(event) {
+        let states = this.config.states;
+        let statesOfEvent = [];
+
+        if(event === undefined){
+            return Object.keys(this.config.states);
+        }
+
+        for(var nameOfState in states){
+            if(states.hasOwnProperty(nameOfState)){
+                if(states[nameOfState].transitions.hasOwnProperty(event)){
+                    statesOfEvent.push(nameOfState);
+                }
+            }
+        }
+
+        return statesOfEvent;
+    }
 
     /**
      * Goes back to previous state.
