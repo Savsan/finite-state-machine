@@ -55,7 +55,9 @@ class FSM {
     /**
      * Resets FSM state to initial.
      */
-    reset() {}
+    reset() {
+        this.currentState = this.config.initial;
+    }
 
     /**
      * Returns an array of states for which there are specified event transition rules.
