@@ -39,7 +39,18 @@ class FSM {
      * Changes state according to event transition rules.
      * @param event
      */
-    trigger(event) {}
+    trigger(event) {
+        let states = this.config.states;
+        let currentState = this.currentState;
+        let hasEvent = states[currentState].transitions.hasOwnProperty(event);
+        
+        if(hasEvent){
+            this.previousState = currentState;
+            this.currentState = states[currentState].transitions[event];
+        }else{
+            throw new Error("Event in current state isn't exist.");
+        }
+    }
 
     /**
      * Resets FSM state to initial.
