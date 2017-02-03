@@ -104,7 +104,16 @@ class FSM {
      * Returns false if redo is not available.
      * @returns {Boolean}
      */
-    redo() {}
+    redo() {
+        if(!this.nextState){
+            return false;
+        }
+        this.previousState = this.currentState;
+        this.currentState = this.nextState;
+        this.nextState = null;
+        return true;
+
+    }
 
     /**
      * Clears transition history
