@@ -25,7 +25,15 @@ class FSM {
      * Goes to specified state.
      * @param state
      */
-    changeState(state) {}
+    changeState(state) {
+        var states = this.config.states;
+        if(states.hasOwnProperty(state)){
+            this.previousState = this.currentState;
+            this.currentState = state;
+        }else{
+            throw new Error("State isn't exist.");
+        }
+    }
 
     /**
      * Changes state according to event transition rules.
