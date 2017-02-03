@@ -3,7 +3,15 @@ class FSM {
      * Creates new FSM instance.
      * @param config
      */
-    constructor(config) {}
+    constructor(config) {
+        if(config === undefined){
+            throw new Error("Config isn't passed");
+        }
+        this.config = config;
+        this.currentState = this.config.initial;
+        this.nextState = null;
+        this.previousState = null;
+    }
 
     /**
      * Returns active state.
