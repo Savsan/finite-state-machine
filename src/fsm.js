@@ -89,7 +89,15 @@ class FSM {
      * Returns false if undo is not available.
      * @returns {Boolean}
      */
-    undo() {}
+    undo() {
+        if(!this.previousState){
+            return false;
+        }
+        this.nextState = this.currentState;
+        this.currentState = this.previousState;
+        this.previousState = null;
+        return true;
+    }
 
     /**
      * Goes redo to state.
